@@ -4,18 +4,19 @@
 #include "Sphere.hpp"
 #include "Hittable.hpp"
 
+#include <vector>
 #include <fstream>
 #include <iostream>
 using namespace std;
 
-color ray_color(const ray& r)
+color ray_color(const ray& r, const vector<hittable*> &objects)
 {
-  sphere* s = new sphere(point3(0, 0, -1), 0.5);
   hit_record rec = hit_record();
-
+ 
   // If it's a hit, draw the sphere color
-  if (s->hit(r, -1.0f, 1000000.0f, rec))
-    return 0.5 * color(rec.normal.x() + 1, rec.normal.y() + 1, rec.normal.z() + 1);
+  for(auto o : objects)
+    if (o->hit(r, -1.0f, 1000000.0f, rec))
+      return 0.5 * color(rec.normal.x() + 1, rec.normal.y() + 1, rec.normal.z() + 1);
 
   // If there was no hit
   vec3 unit_direction = unit_vector(r.direction());
@@ -35,7 +36,6 @@ int main()
   const int image_height = static_cast<int>(image_width / aspect_ratio);
 
   // Camera
-
   auto viewport_height = 2.0;
   auto viewport_width = aspect_ratio * viewport_height;
   auto focal_length = 1.0;
@@ -45,8 +45,12 @@ int main()
   auto vertical = vec3(0, viewport_height, 0);
   auto lower_left_corner = origin - horizontal / 2 - vertical / 2 - vec3(0, 0, focal_length);
 
-  // Render
+  // Scene
+  vector<hittable*> objects;
+  objects.push_back(new sphere(point3(0, 0, -1), 0.50));
+  objects.push_back(new sphere(point3(0, 0.5, -1), 0.25));
 
+  // Render
   myfile << "P3\n" << image_width << " " << image_height << "\n255\n";
 
   for (int j = image_height - 1; j >= 0; --j) 
@@ -57,7 +61,7 @@ int main()
       auto u = double(i) / (image_width - 1);
       auto v = double(j) / (image_height - 1);
       ray r(origin, lower_left_corner + u * horizontal + v * vertical - origin);
-      color pixel_color = ray_color(r);
+      color pixel_color = ray_color(r, objects);
       write_color(myfile, pixel_color);
     }
   }
