@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{bb79c3a0-418a-4971-a5bb-2adeec550adc}</ProjectGuid>
-    <RootNamespace>My65AListOfHittableObjects</RootNamespace>
+    <ProjectGuid>{52376cf5-fbf8-411f-81f7-7aa4d32e2b2e}</ProjectGuid>
+    <RootNamespace>My67ConstantsUtilityFunctions</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -143,6 +143,7 @@
     <ClInclude Include="Hittable.hpp" />
     <ClInclude Include="HittableList.hpp" />
     <ClInclude Include="Ray.hpp" />
+    <ClInclude Include="RTWeekend.hpp" />
     <ClInclude Include="Sphere.hpp" />
     <ClInclude Include="Vec3.hpp" />
   </ItemGroup>

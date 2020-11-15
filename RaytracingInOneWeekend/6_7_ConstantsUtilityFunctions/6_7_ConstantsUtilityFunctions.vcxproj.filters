@@ -24,13 +24,16 @@
     <ClInclude Include="Hittable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HittableList.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Ray.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sphere.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HittableList.hpp">
+    <ClInclude Include="RTWeekend.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
